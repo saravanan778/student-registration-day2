@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Project Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        form {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 300px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            margin-top: 15px;
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <form id="regForm">
+        <h2>Project Registration</h2>
+        
+        <label>Name</label>
+        <input type="text" id="name">
+
+        <label>Email</label>
+        <input type="text" id="email">
+
+        <label>Department</label>
+        <select id="department">
+            <option value="">Select Department</option>
+            <option>IT</option>
+            <option>CSE</option>
+            <option>ECE</option>
+            <option>EEE</option>
+        </select>
+
+        <label>Year</label>
+        <select id="year">
+            <option value="">Select Year</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+        </select>
+
+        <label>Project Title</label>
+        <input type="text" id="project">
+
+        <button type="button" onclick="validateForm()">Register</button>
+    </form>
+
+    <script>
+        function validateForm() {
+            let name = document.getElementById("name").value.trim();
+            let email = document.getElementById("email").value.trim();
+            let dept = document.getElementById("department").value;
+            let year = document.getElementById("year").value;
+            let project = document.getElementById("project").value.trim();
+
+            // Check all fields
+            if (!name || !email || !dept || !year || !project) {
+                alert("All fields are required!");
+                return;
+            }
+
+            // Email format check
+            let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                alert("Please enter a valid email address.");
+                return;
+            }
+
+            // Success
+            alert("Registration Successful");
+            document.getElementById("regForm").reset();
+        }
+    </script>
+
+</body>
+</html>
