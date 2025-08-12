@@ -72,6 +72,13 @@
             box-shadow: 0 4px 15px rgba(0, 151, 167, 0.5);
             transform: scale(1.03);
         }
+        #clickBtn {
+            background-color: #ff9800;
+            margin-top: 10px;
+        }
+        #clickBtn:hover {
+            background-color: #e68900;
+        }
         @media (max-width: 600px) {
             form {
                 padding: 20px;
@@ -82,10 +89,10 @@
         }
     </style>
 </head>
-<body>
+<body onload="welcomeMessage()">
 
     <form id="regForm">
-        <h2>Project Registration</h2>
+        <h2 id="formTitle">Project Registration</h2>
         
         <label>Name</label>
         <input type="text" id="name">
@@ -115,9 +122,23 @@
         <input type="text" id="project">
 
         <button type="button" onclick="validateForm()">Register</button>
+        <button type="button" id="clickBtn" onclick="changeFormAppearance()">Click Me</button>
     </form>
 
     <script>
+        function welcomeMessage() {
+            alert("Welcome! Please fill out the Project Registration form.");
+        }
+
+        function changeFormAppearance() {
+            const form = document.getElementById("regForm");
+            const title = document.getElementById("formTitle");
+
+            // Change background color & title text
+            form.style.background = "#fff8e1";
+            title.textContent = "🎉 You clicked the button!";
+        }
+
         function validateForm() {
             let name = document.getElementById("name").value.trim();
             let email = document.getElementById("email").value.trim();
