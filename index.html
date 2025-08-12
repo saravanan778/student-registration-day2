@@ -5,18 +5,19 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f0f4f8;
+            background: linear-gradient(135deg, #4facfe, #00f2fe); /* Two color gradient */
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
+            margin: 0;
         }
         form {
             background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            width: 300px;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.15);
+            width: 380px; /* Wider form */
         }
         h2 {
             text-align: center;
@@ -25,26 +26,28 @@
         }
         label {
             display: block;
-            margin-top: 10px;
+            margin-top: 12px;
             font-weight: bold;
         }
         input, select {
             width: 100%;
-            padding: 8px;
-            margin-top: 5px;
+            padding: 10px;
+            margin-top: 6px;
             border: 1px solid #ccc;
-            border-radius: 5px;
+            border-radius: 6px;
+            font-size: 14px;
         }
         button {
-            margin-top: 15px;
+            margin-top: 18px;
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             background-color: #4CAF50;
             border: none;
             color: white;
             font-size: 16px;
             cursor: pointer;
-            border-radius: 5px;
+            border-radius: 6px;
+            transition: background 0.3s;
         }
         button:hover {
             background-color: #45a049;
@@ -94,20 +97,17 @@
             let year = document.getElementById("year").value;
             let project = document.getElementById("project").value.trim();
 
-            // Check all fields
             if (!name || !email || !dept || !year || !project) {
                 alert("All fields are required!");
                 return;
             }
 
-            // Email format check
             let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailPattern.test(email)) {
                 alert("Please enter a valid email address.");
                 return;
             }
 
-            // Success
             alert("Registration Successful");
             document.getElementById("regForm").reset();
         }
