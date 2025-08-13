@@ -3,41 +3,31 @@
 <head>
     <title>Project Registration</title>
     <style>
-        :root {
-            --primary: #00bcd4;
-            --secondary: #0097a7;
-            --accent: #e0f7fa;
-            --text-dark: #004d40;
-        }
         body {
             font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: linear-gradient(135deg, #4facfe, #00f2fe); /* Two color gradient */
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
+            height: 100vh;
             margin: 0;
-            padding: 20px;
         }
         form {
             background: white;
             padding: 25px;
             border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-            max-width: 500px;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
+            box-shadow: 0 0 15px rgba(0,0,0,0.15);
+            width: 380px; /* Wider form */
         }
         h2 {
             text-align: center;
             margin-bottom: 15px;
-            color: var(--text-dark);
+            color: #333;
         }
         label {
+            display: block;
             margin-top: 12px;
             font-weight: bold;
-            color: var(--text-dark);
         }
         input, select {
             width: 100%;
@@ -46,46 +36,21 @@
             border: 1px solid #ccc;
             border-radius: 6px;
             font-size: 14px;
-            background-color: var(--accent);
-            transition: all 0.3s ease;
-        }
-        /* Hover effect 1: input focus glow */
-        input:focus, select:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 8px var(--primary);
-            outline: none;
         }
         button {
             margin-top: 18px;
+            width: 100%;
             padding: 12px;
-            background-color: var(--primary);
+            background-color: #4CAF50;
             border: none;
             color: white;
             font-size: 16px;
             cursor: pointer;
             border-radius: 6px;
-            transition: all 0.3s ease;
+            transition: background 0.3s;
         }
-        /* Hover effect 2: button glow & scale */
         button:hover {
-            background-color: var(--secondary);
-            box-shadow: 0 4px 15px rgba(0, 151, 167, 0.5);
-            transform: scale(1.03);
-        }
-        #clickBtn {
-            background-color: #ff9800;
-            margin-top: 10px;
-        }
-        #clickBtn:hover {
-            background-color: #e68900;
-        }
-        @media (max-width: 600px) {
-            form {
-                padding: 20px;
-            }
-            h2 {
-                font-size: 20px;
-            }
+
         }
     </style>
 </head>
