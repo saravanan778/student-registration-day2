@@ -5,19 +5,20 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #4facfe, #00f2fe); /* Two color gradient */
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
             height: 100vh;
             margin: 0;
+            padding-top: 20px;
         }
         form {
             background: white;
             padding: 25px;
             border-radius: 10px;
             box-shadow: 0 0 15px rgba(0,0,0,0.15);
-            width: 380px; /* Wider form */
+            width: 380px;
         }
         h2 {
             text-align: center;
@@ -29,7 +30,7 @@
             margin-top: 12px;
             font-weight: bold;
         }
-        input, select {
+        input, select, textarea {
             width: 100%;
             padding: 10px;
             margin-top: 6px;
@@ -38,7 +39,7 @@
             font-size: 14px;
         }
         button {
-            margin-top: 18px;
+            margin-top: 12px;
             width: 100%;
             padding: 12px;
             background-color: #4CAF50;
@@ -50,7 +51,29 @@
             transition: background 0.3s;
         }
         button:hover {
-
+            background-color: #45a049;
+        }
+        .card-container {
+            margin-top: 20px;
+            width: 420px;
+        }
+        .card {
+            background: #fff;
+            padding: 15px;
+            margin-bottom: 12px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+        .delete-btn {
+            margin-top: 8px;
+            background-color: #e74c3c;
+        }
+        .delete-btn:hover {
+            background-color: #c0392b;
+        }
+        #descContainer {
+            display: none; /* hidden initially */
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -86,22 +109,23 @@
         <label>Project Title</label>
         <input type="text" id="project">
 
+        <div id="descContainer">
+            <label>Project Description</label>
+            <textarea id="projectDesc" rows="3"></textarea>
+        </div>
+
         <button type="button" onclick="validateForm()">Register</button>
-        <button type="button" id="clickBtn" onclick="changeFormAppearance()">Click Me</button>
+        <button type="button" onclick="toggleDescription()">Add Project Summary</button>
     </form>
 
+    <div class="card-container" id="cardContainer"></div>
+
     <script>
+        let lastCard = null;
+        let descVisible = false; // track if textarea is visible
+
         function welcomeMessage() {
             alert("Welcome! Please fill out the Project Registration form.");
-        }
-
-        function changeFormAppearance() {
-            const form = document.getElementById("regForm");
-            const title = document.getElementById("formTitle");
-
-            // Change background color & title text
-            form.style.background = "#fff8e1";
-            title.textContent = "🎉 You clicked the button!";
         }
 
         function validateForm() {
@@ -122,8 +146,51 @@
                 return;
             }
 
-            alert("Registration Successful");
+            // Create card after successful registration
+            let container = document.getElementById("cardContainer");
+            let card = document.createElement("div");
+            card.className = "card";
+
+            card.innerHTML = `
+                <strong>${name}</strong><br>
+                Dept: ${dept}, Year: ${year}<br>
+                Project: ${project}<br>
+                <button class="delete-btn" onclick="this.parentElement.remove()">Delete</button>
+            `;
+
+            container.appendChild(card);
+            lastCard = card;
+
             document.getElementById("regForm").reset();
+            alert("Registration Successful & Card Created!");
+        }
+
+        function toggleDescription() {
+            let descContainer = document.getElementById("descContainer");
+            let descField = document.getElementById("projectDesc");
+
+            // First click → show textarea
+            if (!descVisible) {
+                descContainer.style.display = "block";
+                descVisible = true;
+                return;
+            }
+
+            // Second click → add description
+            let desc = descField.value.trim();
+            if (!desc) {
+                alert("Please enter a description before adding.");
+                return;
+            }
+            if (lastCard) {
+                lastCard.innerHTML += `<br><em>${desc}</em>`;
+                descContainer.style.display = "none";
+                descField.value = "";
+                descVisible = false;
+                alert("Project Summary Added!");
+            } else {
+                alert("No project card found! Please register first.");
+            }
         }
     </script>
 
